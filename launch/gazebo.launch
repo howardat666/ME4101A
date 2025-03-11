@@ -1,0 +1,35 @@
+  <!-- new version with wall -->
+<launch>
+  <!-- 加载URDF文件 -->
+  <param name="robot_description" command="$(find xacro)/xacro $(find arc_mobile_base)/urdf/test2.urdf"/>
+
+  <!-- 加载控制器的YAML配置，指定命名空间 -->
+  <rosparam ns="/robot" file="$(find arc_mobile_base)/config/controller.yaml" command="load"/>
+
+  <!-- 启动Gazebo仿真环境 -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+  <arg name="world_name" value="$(find arc_mobile_base)/launch/room.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- 加载机器人模型到 Gazebo 中 -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-param robot_description
+              -urdf
+              -model my_robot
+              -x 0 -y 0 -z 0.2"/>
+  <!-- -Y 0.7854"/> -->
+
+  <!-- 启动controller_manager，用于管理控制器 -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="true" output="screen"
+        ns="/robot"
+        args="joint_state_controller left_front_wheel_controller right_front_wheel_controller left_rear_wheel_controller right_rear_wheel_controller"/>
+
+  <!-- 启动joy stick -->
+  <node pkg="joy" type="joy_node" name="joy_node" output="screen"/>
+
+</launch>
