@@ -2,7 +2,7 @@
 
 - **Name:** Luo Zhonghao
 - **Email:** luo_zhonghao@u.nus.edu
-- **Email:** ust test
+
 ---
 
 ## Table of Contents
