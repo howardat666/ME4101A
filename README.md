@@ -68,15 +68,39 @@ Replace `<ros_distro>` with your ROS version (e.g., `noetic`, `melodic`).
 ## Project Structure
 
 ```
-mobile_base/
+arc_mobile_base/
 │
-├─ basic_control.py                 # Use IK to control the robot
-├─ joystick.py                      # Control the robot with joystick
-├─ mu_gui.py                        # Change mu value with GUI
-├─ pid_control.py                   # Control the robot with PID
-├─ read_3v.py                       # Read the vx,vy,w of the robot from sensors
-├─ read_wheel_speed.py              # Read the wheel speed from encoders
+├─ config/                          # Configuration files for the project
+│   └─ controller.yaml              # Controller configuration file
+│
+├─ launch/                          # Launch files for the project
+│   ├─ gazebo.launch                # Launch file for Gazebo simulation
+│   ├─ display.launch               # Launch file for displaying robot information
+│   └─ romm.world                   # World file for setting up Gazebo environment
+│
+├─ meshes/                          # 3D models and meshes used in the project
+│   ├─ base_link.STL                # 3D model of the robot base
+│   └─ ...                          # Other 3D model files
+│
+├─ others/                            # Additional files
+│   └─ libdynamic_friction_plugin.so  # Dynamic friction plugin library for Gazebo simulation
+│
+├─ scripts/                     # Python scripts for the project
+│   ├─ basic_control.py         # Use Inverse Kinematics (IK) to control the robot
+│   ├─ joystick.py              # Control the robot with a joystick
+│   ├─ mu_gui.py                # GUI for changing mu value
+│   ├─ pid_control.py           # Control the robot with PID
+│   ├─ read_3v.py               # Read robot velocity (vx, vy, w) from sensors
+│   └─ read_wheel_speed.py      # Read wheel speed from encoders
+│    
+│
+├─ urdf/                            # URDF files for the project
+│   └─ test2.urdf                   # URDF files for robot model
+│
+├─ package.xml                      # ROS package configuration file
+├─ CMakeLists.txt                   # Build configuration for CMake
 └─ README.md                        # Project documentation
+
 ```
 
 ---
