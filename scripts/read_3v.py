@@ -21,7 +21,7 @@ w_filtered = []
 time_data = []
 imu_time_data = []  # 用于保存IMU数据的时间戳
 imu_data_buffer = []  # 用于存储IMU数据
-buffer_size = 200  # 限制数据长度，防止内存占用过高
+buffer_size = 800  # 限制数据长度，防止内存占用过高
 
 # Filter parameters for Savitzky-Golay filter
 filter_window_length = 11  # 必须为奇数

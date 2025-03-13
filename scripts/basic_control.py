@@ -50,11 +50,6 @@ def compute_wheel_speeds():
     VC = Vx2 * np.sin(t2) - Vy2 * np.cos(t2) + Vx2 * np.cos(t2) + Vy2 * np.sin(t2)
     VD = Vx2 * np.sin(t2) - Vy2 * np.cos(t2) - Vx2 * np.cos(t2) - Vy2 * np.sin(t2)
 
-    VA /= 0.105
-    VB /= 0.105
-    VC /= 0.105
-    VD /= 0.105
-
     return VA, VB, VC, VD
 
 # ROS发布函数，循环发布速度
